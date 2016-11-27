@@ -16,19 +16,19 @@
           type="button"
           class="navbar-toggle collapsed"
           data-toggle="collapse"
-          data-target="#full-cirlce-navbar">
+          data-target="#full-circle-navbar">
         <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
       </button>
       <span
-      class="glyphicon glyphicon-question-sign navbar-brand"
+      class="glyphicon glyphicon-dashboard navbar-brand"
       aria-hidden="true"></span>
     </div>
 
       <div class="navbar-collapse collapse" id="full-circle-navbar">
         <ul class="nav navbar-nav">
           <li><%= link_to 'Home', root_path %></li>
-          <!-- <li><%#= link_to 'All Goals', goals_path %></li>
-          <li><%#= link_to 'New Goal', new_goal_path %></li> -->
+          <li><%= link_to 'Goals', goals_path %></li>
+          <li><%= link_to 'New Goal', new_goal_path %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
