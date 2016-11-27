@@ -1,5 +1,8 @@
 class User < ApplicationRecord
+has_many :goals, dependent: :destroy
+has_secure_password
 before_validation :downcase_email
+
 
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
