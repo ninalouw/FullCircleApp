@@ -1,5 +1,7 @@
 class GoalsController < ApplicationController
   before_action :find_goal, only: [:edit, :update, :destroy, :show]
+  before_action :authenticate_user
+  
   def new
     @goal = Goal.new
   end
