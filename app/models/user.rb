@@ -1,8 +1,10 @@
 class User < ApplicationRecord
-has_many :goals, dependent: :destroy
-has_secure_password
-before_validation :downcase_email
 
+has_secure_password
+
+has_many :goals, dependent: :destroy
+
+before_validation :downcase_email
 
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
@@ -13,8 +15,11 @@ validates :email, presence: true,
                   uniqueness: { case_sensitive: false },
                   format: VALID_EMAIL_REGEX
 
-  private
+  def full_name
+    "#{first_name} #{last_name}".strip.squeeze(' ').titleize
+  end
 
+  private
   def downcase_email
     self.email.downcase! if email.present?
   end
