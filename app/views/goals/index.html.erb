@@ -1,0 +1,15 @@
+
+<div class = "row">
+  <div class = "col-md-12">
+   <h1>Goals</h1>
+  </div>
+</div>
+
+<div class = "goals row">
+  <div class = "col-md-12">
+    <% @goals.each do |g| %>
+    <%= link_to g.name, goal_path(g) %>
+   <hr>
+    <% end %>
+  </div>
+</div>
