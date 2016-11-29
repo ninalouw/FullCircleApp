@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_action :find_goal, only: [:edit, :update, :destroy, :show]
   before_action :authenticate_user
-  
+
   def new
     @goal = Goal.new
   end
@@ -29,10 +29,6 @@ class GoalsController < ApplicationController
       flash.now[:alert] = 'Please see errors below!'
       render :edit
     end
-  end
-
-  def index
-    @goals = Goal.order(created_at: :desc)
   end
 
   def show
