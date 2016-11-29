@@ -1,0 +1,18 @@
+<h2>Change your password</h2>
+
+<%#= @user.errors.full_messages.join(', ') %>
+<%= form_for @user, url: password_path(@user) do |f| %>
+<div>
+<%= f.label :current_password %>
+<%= f.password_field :current_password %>
+</div>
+<div>
+<%= f.label :password, 'New Password' %>
+<%= f.password_field :password %>
+</div>
+<div>
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %>
+</div>
+<%= f.submit %>
+<% end %>

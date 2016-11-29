@@ -14,4 +14,10 @@ Rails.application.routes.draw do
 
   get '/auth/facebook', as: :sign_in_with_facebook
   get '/auth/facebook/callback' => 'callbacks#facebook'
+
+  resources :passwords, only: [:edit, :update, :new] do
+    post :link, on: :collection
+    get :forgot_password, on: :collection
+    patch :update_password, on: :collection
+  end
 end

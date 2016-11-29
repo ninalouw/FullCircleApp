@@ -1,0 +1,9 @@
+<h4>Reset your password by entering your email: </h4>
+
+  <%= form_tag link_passwords_path do %>
+  <div>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+  </div>
+  <%= submit_tag 'Get your token' %>
+  <% end %>
