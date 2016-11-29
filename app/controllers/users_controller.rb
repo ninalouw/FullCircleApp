@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+
   def new
     @user = User.new
   end
+
   def create
     user_params = params.require(:user).permit([:first_name,
                                                 :last_name,
@@ -15,5 +17,9 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def goals_list
+    @goals = current_user.goals
   end
 end

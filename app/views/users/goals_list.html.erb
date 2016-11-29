@@ -1,0 +1,4 @@
+<h2> <%= current_user.first_name %>'s Goals </h2>
+   <% @goals.each do |f| %>
+   <p><%= link_to f.name, goal_path(f) %></p>
+ <% end %>
