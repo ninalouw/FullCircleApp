@@ -24,6 +24,10 @@ validates :email, presence: true,
     uid.present? && provider == 'twitter'
   end
 
+  def signed_in_with_facebook?
+    uid.present? && provider == 'facebook'
+  end
+
   def from_oauth?
     provider.present? && uid.present?
   end
