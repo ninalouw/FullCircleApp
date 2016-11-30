@@ -1,1 +1,80 @@
 <h1> Welcome to Full Circle</h1>
+
+<!-- Bootstrap Modal - will use jQuery and Ajax on Frontend Client for triggering -->
+<!-- JS Example:
+$('#newGoalModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+}) -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editGoalModal" data-whatever="Edit">Open modal for Edit Goal</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGoalModal" data-whatever="New">Open modal for New Goal</button>
+
+<!-- New Goal Modal -->
+<div class="modal fade" id="newGoalModal" tabindex="-1" role="dialog" aria-labelledby="newGoalModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="newGoalModalLabel">New Goal</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="goal-name" class="control-label">Goal Name:</label>
+            <input type="text" class="form-control" id="goal-name">
+          </div>
+          <div class="form-group">
+            <label for="time-dropdown" class="control-label">Time:</label>
+            <div class="input-group clockpicker">
+                <input type="text" class="form-control" value="09:30" id="time-dropdown">
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Set Goal</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Edit Goal Modal -->
+<div class="modal fade" id="editGoalModal" tabindex="-1" role="dialog" aria-labelledby="editGoalModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editGoalModalLabel">Edit Goal</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="goal-name" class="control-label">Goal Name:</label>
+            <input type="text" class="form-control" id="goal-name">
+          </div>
+          <div class="form-group">
+            <label for="time-dropdown" class="control-label">Time:</label>
+            <div class="input-group clockpicker">
+                <input type="text" class="form-control" value="09:30" id="time-dropdown">
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Reset Goal</button>
+      </div>
+    </div>
+  </div>
+</div>
