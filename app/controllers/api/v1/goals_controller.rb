@@ -1,5 +1,5 @@
-class Api::V1::GoalsController < ApplicationController
-protect_from_forgery with: :null_session
+class Api::V1::GoalsController < Api::BaseController
+# protect_from_forgery with: :null_session
 
   def create
     goal_params = params.require(:goal).permit([:name,

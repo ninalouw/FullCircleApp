@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129020401) do
+ActiveRecord::Schema.define(version: 20161201210249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20161129020401) do
     t.string   "oauth_secret"
     t.text     "oauth_raw_data"
     t.string   "token"
+    t.string   "api_key"
+    t.index ["api_key"], name: "index_users_on_api_key", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", using: :btree
   end
 

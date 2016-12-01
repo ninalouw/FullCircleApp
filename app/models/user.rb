@@ -1,10 +1,10 @@
 class User < ApplicationRecord
 
+before_create :generate_api_key
 has_secure_password
+before_validation :downcase_email
 
 has_many :goals, dependent: :destroy
-
-before_validation :downcase_email
 
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
@@ -48,6 +48,17 @@ validates :email, presence: true,
   def self.find_from_oauth(oauth_data)
     User.where(provider: oauth_data['provider'],
                     uid: oauth_data['uid']).first
+  end
+
+  def generate_api_key
+    self.api_key = SecureRandom.hex(32)
+    loop do
+      if User.exists?(api_key: api_key)
+        self.api_key = SecureRandom.hex(32)
+      else
+        break
+      end
+    end
   end
 
   private
