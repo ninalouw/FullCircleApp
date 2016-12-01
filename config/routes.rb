@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :new, :update] do
     get :goals_list, on: :collection
   end
+
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
@@ -20,4 +21,13 @@ Rails.application.routes.draw do
     get :forgot_password, on: :collection
     patch :update_password, on: :collection
   end
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :goals, only: [:show, :create]
+    end
+  end
+
+  get '/api/v1/goals/' => 'api/v1/goals#goals_list'
+
 end
