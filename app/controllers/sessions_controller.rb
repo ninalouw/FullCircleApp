@@ -1,9 +1,8 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
-    user = User.find_by_email params[:email].downcase
+    user = User.find_by email: params[:email].downcase
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to root_path, notice: 'Signed In'
@@ -17,5 +16,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: 'Signed out!'
   end
-
 end

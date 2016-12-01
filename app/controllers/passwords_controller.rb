@@ -8,8 +8,7 @@ class PasswordsController < ApplicationController
     end
   end
 
-  def index
-  end
+  def index; end
 
   def edit
     @password = params.dig(:user, :password)
@@ -43,7 +42,6 @@ class PasswordsController < ApplicationController
     end
   end
 
-
   def update_password
     @email = params.dig(:user, :email)
     @user = User.find_by(email: @email)
@@ -66,9 +64,9 @@ class PasswordsController < ApplicationController
 
   def user_params
     params.require(:user).permit([:first_name,
-                                                :last_name,
-                                                :email,
-                                                :password,
-                                                :password_confirmation])
+                                  :last_name,
+                                  :email,
+                                  :password,
+                                  :password_confirmation])
   end
 end

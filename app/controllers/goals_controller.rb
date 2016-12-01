@@ -18,8 +18,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @goal.update goal_params
@@ -31,8 +30,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @goal.destroy
