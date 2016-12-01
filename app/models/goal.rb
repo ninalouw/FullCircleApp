@@ -25,6 +25,7 @@ class Goal < ApplicationRecord
     user ? user.last_name : "Anonymous"
   end
 
+
   private
 
   def titleize_name
