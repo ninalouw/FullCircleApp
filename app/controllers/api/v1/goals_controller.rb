@@ -1,5 +1,5 @@
 class Api::V1::GoalsController < Api::BaseController
-  # protect_from_forgery with: :null_session
+
 
   def create
     goal_params = params.require(:goal).permit([:name,
@@ -23,7 +23,7 @@ class Api::V1::GoalsController < Api::BaseController
   # for now we will do this, later,
   # we will find the user by api key
   def goals_list
-    @goals = current_user.goals
+    @goals = User.first.goals
     render json: @goals
   end
 
