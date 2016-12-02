@@ -20,5 +20,11 @@ class UsersController < ApplicationController
 
   def goals_list
     @goals = current_user.goals
+    respond_to do |format|
+      format.html { render }
+      format.text { render }
+      format.xml  { render xml: @goal }
+      format.json { render json: @goal.to_json }
+    end
   end
 end

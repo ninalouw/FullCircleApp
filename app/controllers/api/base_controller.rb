@@ -1,7 +1,11 @@
 class Api::BaseController < ApplicationController
   # we are commenting this out temporarily for use with frontend client
   # before_action :authenticate
-
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if user_signed_in?
+  end
+  helper_method :current_user
+  
   private
 
   def authenticate

@@ -18,6 +18,16 @@ class GoalsController < ApplicationController
     end
   end
 
+  def index
+    @goals = Goal.order(created_at: :desc)
+    respond_to do |format|
+      format.html { render }
+      format.text { render }
+      format.xml  { render xml: @goal }
+      format.json { render json: @goal.to_json }
+    end
+  end
+
   def edit; end
 
   def update
@@ -30,7 +40,14 @@ class GoalsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html { render }
+      format.text { render }
+      format.xml  { render xml: @goal }
+      format.json { render json: @goal.to_json }
+    end
+  end
 
   def destroy
     @goal.destroy

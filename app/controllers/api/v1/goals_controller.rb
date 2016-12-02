@@ -23,6 +23,8 @@ class Api::V1::GoalsController < Api::BaseController
   # for now we will do this, later,
   # we will find the user by api key
   def goals_list
-    @goals = @user.goals
+    @goals = current_user.goals
+    render json: @goals
   end
+
 end
