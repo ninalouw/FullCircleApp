@@ -29,5 +29,4 @@ Rails.application.routes.draw do
   end
 
   get '/api/v1/goals/' => 'api/v1/goals#goals_list'
-
 end

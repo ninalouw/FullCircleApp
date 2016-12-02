@@ -10,37 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129020401) do
-
+ActiveRecord::Schema.define(version: 20_161_201_210_249) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "goals", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "minutes"
-    t.integer  "count_consecutive_days_completed"
-    t.datetime "latest_date_completed"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_goals_on_user_id", using: :btree
+  create_table 'goals', force: :cascade do |t|
+    t.string   'name'
+    t.integer  'minutes'
+    t.integer  'count_consecutive_days_completed'
+    t.datetime 'latest_date_completed'
+    t.datetime 'created_at',                       null: false
+    t.datetime 'updated_at',                       null: false
+    t.integer  'user_id'
+    t.index ['user_id'], name: 'index_goals_on_user_id', using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "uid"
-    t.string   "provider"
-    t.string   "oauth_token"
-    t.string   "oauth_secret"
-    t.text     "oauth_raw_data"
-    t.string   "token"
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", using: :btree
+  create_table 'users', force: :cascade do |t|
+    t.string   'first_name'
+    t.string   'last_name'
+    t.string   'email'
+    t.string   'password_digest'
+    t.datetime 'created_at',      null: false
+    t.datetime 'updated_at',      null: false
+    t.string   'uid'
+    t.string   'provider'
+    t.string   'oauth_token'
+    t.string   'oauth_secret'
+    t.text     'oauth_raw_data'
+    t.string   'token'
+    t.string   'api_key'
+    t.index ['api_key'], name: 'index_users_on_api_key', unique: true, using: :btree
+    t.index %w(uid provider), name: 'index_users_on_uid_and_provider', using: :btree
   end
 
-  add_foreign_key "goals", "users"
+  add_foreign_key 'goals', 'users'
 end

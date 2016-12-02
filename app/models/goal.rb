@@ -1,11 +1,10 @@
 class Goal < ApplicationRecord
-
   before_validation :titleize_name
 
   belongs_to :user
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false,
-                      message: 'must be unique' }
+                                 message: 'must be unique' }
 
   validates :minutes, presence: true
 
@@ -18,13 +17,12 @@ class Goal < ApplicationRecord
   end
 
   def user_first_name
-    user ? user.first_name : "Anonymous"
+    user ? user.first_name : 'Anonymous'
   end
 
   def user_last_name
-    user ? user.last_name : "Anonymous"
+    user ? user.last_name : 'Anonymous'
   end
-
 
   private
 
