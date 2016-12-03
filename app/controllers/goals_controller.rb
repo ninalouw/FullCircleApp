@@ -51,7 +51,7 @@ class GoalsController < ApplicationController
 
   def destroy
     @goal.destroy
-    redirect_to goals_path, notice: 'Goal Deleted'
+    redirect_to goals_list_users_path, notice: 'Goal Deleted'
   end
 
   private
