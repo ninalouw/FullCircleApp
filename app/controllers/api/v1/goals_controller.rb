@@ -2,10 +2,6 @@ class Api::V1::GoalsController < Api::BaseController
 
 
   def create
-    goal_params = params.require(:goal).permit([:name,
-                                                :minutes,
-                                                :count_consecutive_days_completed,
-                                                :latest_date_completed])
     goal = Goal.new goal_params
     goal.user = @api_user
     if goal.save
@@ -25,6 +21,24 @@ class Api::V1::GoalsController < Api::BaseController
   def goals_list
     @goals = User.first.goals
     render json: @goals
+  end
+
+  def update_done
+    @goal = Goal.find params[:id]
+    current_days = @goal.count_consecutive_days_completed
+    current_days = current_days + 1
+    @goal.update({count_consecutive_days_completed: current_days},
+                  {latest_date_completed: Date.today}
+                  )
+    @goal.save
+    render json: @goal
+  end
+
+  def goal_params
+    params.require(:goal).permit([:name,
+                                  :minutes,
+                                  :count_consecutive_days_completed,
+                                  :latest_date_completed])
   end
 
 end
