@@ -24,5 +24,7 @@ module FullCircle
         resource '*', headers: :any, methods: [:get, :post, :patch, :delete]
       end
     end
+    config.time_zone = 'Pacific Time (US & Canada)'
+    config.active_record.default_timezone = :local # Or :utc
   end
 end

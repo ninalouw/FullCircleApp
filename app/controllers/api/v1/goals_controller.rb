@@ -1,5 +1,5 @@
 class Api::V1::GoalsController < Api::BaseController
-
+  protect_from_forgery with: :null_session
 
   def create
     goal = Goal.new goal_params
@@ -24,13 +24,12 @@ class Api::V1::GoalsController < Api::BaseController
   end
 
   def update_done
+    # first line not working, it is not getting the goal id
+    # but setting it to nil
+    # but second part is working
+    Goal.increment_counter(:count_consecutive_days_completed, :id)
     @goal = Goal.find params[:id]
-    current_days = @goal.count_consecutive_days_completed
-    current_days = current_days + 1
-    @goal.update({count_consecutive_days_completed: current_days},
-                  {latest_date_completed: Date.today}
-                  )
-    @goal.save
+    @goal.update(latest_date_completed: Time.zone.now)
     render json: @goal
   end
 

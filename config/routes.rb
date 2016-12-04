@@ -29,6 +29,6 @@ Rails.application.routes.draw do
   end
 
   get '/api/v1/goals/' => 'api/v1/goals#goals_list'
-  post '/api/v1/goals/[:id]/update_done' => 'api/v1/goals#update_done'
+  post '/api/v1/goals/:id/' => 'api/v1/goals#update_done'
 
 end
