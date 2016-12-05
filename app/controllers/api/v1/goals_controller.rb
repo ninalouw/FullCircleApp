@@ -27,9 +27,15 @@ class Api::V1::GoalsController < Api::BaseController
     # first line not working, it is not getting the goal id
     # but setting it to nil
     # but second part is working
-    Goal.increment_counter(:count_consecutive_days_completed, :id)
+    #Goal.increment_counter(:count_consecutive_days_completed, :id)
     @goal = Goal.find params[:id]
-    @goal.update(latest_date_completed: Time.zone.now)
+    current_days = @goal.count_consecutive_days_completed
+    if current_days.blank?
+      current_days = 1
+    else
+      current_days += 1
+    end
+    @goal.update(latest_date_completed: Time.zone.now, count_consecutive_days_completed: current_days)
     render json: @goal
   end
 
