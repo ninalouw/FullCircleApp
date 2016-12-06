@@ -43,6 +43,12 @@ class Api::V1::GoalsController < Api::BaseController
     # format.js { render js: 'alert("You cannot re-update your goal!");' }
   end
 
+  def delete_goal
+    @goal = Goal.find params[:id]
+    @goal.destroy
+    render json: @goal
+  end
+
   def goal_params
     params.require(:goal).permit([:name,
                                   :minutes,

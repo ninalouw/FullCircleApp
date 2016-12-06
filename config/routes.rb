@@ -30,5 +30,5 @@ Rails.application.routes.draw do
 
   get '/api/v1/goals/' => 'api/v1/goals#goals_list'
   post '/api/v1/goals/:id/' => 'api/v1/goals#update_done'
-
+  delete '/api/v1/goals/:id/' => 'api/v1/goals#delete_goal'
 end
