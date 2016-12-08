@@ -25,6 +25,9 @@ class Api::V1::GoalsController < Api::BaseController
 
   def update_done
     today = DateTime.now.to_date
+    #to_date is a problem, can't get called on nil so when
+    #column is empty it throws an error.
+    today = Date.today
     @goal = Goal.find params[:id]
     current_days = @goal.count_consecutive_days_completed
 
@@ -34,8 +37,9 @@ class Api::V1::GoalsController < Api::BaseController
       current_days += 1
     end
 
-    if @goal.latest_date_completed.to_date != today
+    if @goal.latest_date_completed.blank?
       @goal.update(latest_date_completed: today, count_consecutive_days_completed: current_days)
+    elsif @goal.latest_date_completed.to_date == today
       render json: @goal
     end
     head :ok
