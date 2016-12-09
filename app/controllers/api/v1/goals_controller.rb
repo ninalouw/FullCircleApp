@@ -25,8 +25,6 @@ class Api::V1::GoalsController < Api::BaseController
 
   def update_done
     today = DateTime.now.to_date
-    #to_date is a problem, can't get called on nil so when
-    #column is empty it throws an error.
     today = Date.today
     @goal = Goal.find params[:id]
     current_days = @goal.count_consecutive_days_completed
@@ -51,6 +49,17 @@ class Api::V1::GoalsController < Api::BaseController
     @goal = Goal.find params[:id]
     @goal.destroy
     render json: @goal
+  end
+
+  def update_edited_goal
+    @goal = Goal.find params[:id]
+    if @goal.update goal_params
+      flash[:notice] = 'Goal updated'
+      # redirect_to goal_path(@goal) -- this is a get, to get newly edited goal and render it
+      render json: @goal
+    else
+      flash.now[:alert] = 'Please see errors below!'
+    end
   end
 
   def goal_params
