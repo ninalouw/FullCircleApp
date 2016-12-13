@@ -1,6 +1,8 @@
 class Api::BaseController < ApplicationController
   # we are commenting this out temporarily for use with frontend client
-  # before_action :authenticate
+  before_action :authenticate
+  protect_from_forgery with: :null_session
+  skip_before_action :verify_authenticity_token
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if user_signed_in?
@@ -10,7 +12,7 @@ class Api::BaseController < ApplicationController
   # def current_days
   #   # current_days = @goal.count_consecutive_days_completed
   #   # current_days = current_days + 1
-  #   
+  #
   # end
 
   private
@@ -18,7 +20,7 @@ class Api::BaseController < ApplicationController
   def authenticate
     # for authentication with react frontend client add:
     api_key = params[:api_key] || request.headers['Authorization']
-    @api_user = User.find_by api_key: params[:api_key]
+    @api_user = User.find_by api_key: api_key
     # render json: {status: 'invalid api key'} unless user
     head :unauthorized unless @api_user
   end

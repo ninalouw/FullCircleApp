@@ -1,8 +1,9 @@
 class Api::V1::GoalsController < Api::BaseController
-  protect_from_forgery with: :null_session
 
   def create
-    goal = Goal.new goal_params
+    new_goal_params = params.require(:goal).permit(:name, :minutes)
+    goal = Goal.new new_goal_params
+    #temporary fix
     goal.user = @api_user
     if goal.save
       render json: { id: goal.id, status: :success }
@@ -19,13 +20,15 @@ class Api::V1::GoalsController < Api::BaseController
   # for now we will do this, later,
   # we will find the user by api key
   def goals_list
-    @goals = User.first.goals
+    #@goals = current_user
+    @goals = User.first.goals.order(count_consecutive_days_completed: :desc)
+    # @goals = Goal.order(count_consecutive_days_completed: :desc)
     render json: @goals
   end
 
   def update_done
     today = DateTime.now.to_date
-    today = Date.today
+    # today = Date.today
     @goal = Goal.find params[:id]
     current_days = @goal.count_consecutive_days_completed
 
@@ -35,14 +38,12 @@ class Api::V1::GoalsController < Api::BaseController
       current_days += 1
     end
 
-    if @goal.latest_date_completed.blank?
+    if @goal&.latest_date_completed&.to_date != today
       @goal.update(latest_date_completed: today, count_consecutive_days_completed: current_days)
-    elsif @goal.latest_date_completed.to_date == today
+    else
       render json: @goal
     end
     head :ok
-    # render json: { notice: 'You have already updated your goal!' }
-    # format.js { render js: 'alert("You cannot re-update your goal!");' }
   end
 
   def delete_goal
@@ -55,7 +56,6 @@ class Api::V1::GoalsController < Api::BaseController
     @goal = Goal.find params[:id]
     if @goal.update goal_params
       flash[:notice] = 'Goal updated'
-      # redirect_to goal_path(@goal) -- this is a get, to get newly edited goal and render it
       render json: @goal
     else
       flash.now[:alert] = 'Please see errors below!'
