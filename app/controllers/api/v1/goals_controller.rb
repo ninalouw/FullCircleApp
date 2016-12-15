@@ -1,5 +1,4 @@
 class Api::V1::GoalsController < Api::BaseController
-
   def create
     new_goal_params = params.require(:goal).permit(:name, :minutes)
     goal = Goal.new new_goal_params
@@ -62,5 +61,4 @@ class Api::V1::GoalsController < Api::BaseController
                                   :count_consecutive_days_completed,
                                   :latest_date_completed])
   end
-
 end

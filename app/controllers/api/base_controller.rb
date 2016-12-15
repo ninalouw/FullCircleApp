@@ -9,6 +9,7 @@ class Api::BaseController < ApplicationController
   helper_method :current_user
 
   private
+
   def authenticate
     api_key = params[:api_key] || request.headers['Authorization']
     @api_user = User.find_by api_key: api_key
