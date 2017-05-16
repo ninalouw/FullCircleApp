@@ -16,7 +16,8 @@ class Api::V1::GoalsController < Api::BaseController
   end
 
   def goals_list
-    @goals = User.first.goals.order(count_consecutive_days_completed: :desc)
+    # @goals = User.first.goals.order(count_consecutive_days_completed: :desc)
+    @goals = User.first.goals.order(created_at: :desc)
     render json: @goals
   end
 

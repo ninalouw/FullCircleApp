@@ -236,6 +236,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   awesome_print
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3)
@@ -246,6 +247,7 @@ DEPENDENCIES
   interactive_editor
   jbuilder (~> 2.5)
   jquery-rails
+  jwt
   listen (~> 3.0.5)
   omniauth-facebook
   omniauth-twitter

@@ -26,5 +26,7 @@ module FullCircle
     end
     config.time_zone = 'Pacific Time (US & Canada)'
     config.active_record.default_timezone = :local # Or :utc
+    # for jwt token implementation: Add your lib/ directory to the Rails autoload path:
+    # config.autoload_paths << Rails.root.join('lib')
   end
 end
