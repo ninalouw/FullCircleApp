@@ -34,6 +34,8 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # gem jwt for jwt auth with react frontend
 gem 'jwt'
+# gem foreman for running rails and client servers simultaneously
+gem 'foreman', '~> 0.82.0'
 
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
