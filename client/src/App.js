@@ -14,8 +14,6 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import AppBar from 'material-ui/AppBar';
 
-// const BASE_URL = 'http://localhost:3001';
-
 class App extends Component {
   constructor (props) {
     super(props);
@@ -26,13 +24,12 @@ class App extends Component {
       newModalIsOpen: false,
       editModalIsOpen: false,
       deleteModalIsOpen: false,
-      goalBeingEdited: null, // change this to be activeGoal
+      goalBeingEdited: null,
       newGoal: ""
     };
     this.setGoalAsDone = this.setGoalAsDone.bind(this);
     this.openModal = this.openModal.bind(this);
     this.openEditModal = this.openEditModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleEditNameChange = this.handleEditNameChange.bind(this);
     this.handleEditMinutesChange = this.handleEditMinutesChange.bind(this);
@@ -58,6 +55,7 @@ class App extends Component {
       (goal) => {
         if (goal.id === goalIndex) {
           goal.done = true;
+
         }
         return goal;
       }
@@ -65,7 +63,6 @@ class App extends Component {
 
     this.setState({ goals: tempGoals });
     this.postCheckedGoals(goalIndex);
-    console.log('posted checked goal', goalIndex);
   }
 
   //Functions for our Modal
@@ -105,10 +102,6 @@ class App extends Component {
     );
     this.setState({ goalBeingEdited: tempGoals[0] });
     this.setState({ editModalIsOpen: true });
-  }
-
-  afterOpenModal () {
-    // this.refs.subtitle.style.color = 'rgb(27, 179, 133)';
   }
 
   closeModal () {
@@ -177,20 +170,17 @@ class App extends Component {
   //by setGoalAsDone func
   postCheckedGoals (goalIndex) {
     $.ajax({
-      url: `/api/v1/goals/${goalIndex}`,
+      url:`/api/v1/goals/${goalIndex}`,
       headers: {
           'Authorization': apiKeys.GoalsApp,
-          Accept : 'application/json'
+          Accept : 'application/html'
       },
       method: 'POST',
       data: { done: true },
       success: function (goal) {
-        console.log('postCheckedGoals ajax called');
         this.getGoals();
-        console.log('getGoals ajax called');
       }.bind(this),
       error: function () {
-        console.log('postCheckedGoals has an error');
       }
     });
   }
@@ -247,7 +237,6 @@ class App extends Component {
   }
 
  //if a new goal is created, we then want to post and show all of the Goals again.
- //we will get back to this once we have made the NewGoalForm component.
   postNewGoals (newGoal) {
     $.ajax({
       url: `/api/v1/goals`,
@@ -274,7 +263,7 @@ class App extends Component {
                 title="Full Circle"
                 iconClassNameRight="muidocs-icon-navigation-expand-more"/>
               <div className="row">
-                <div className="col-xs-6">
+                <div className="col-xs-12 col-md-7 col-lg-6">
                <GoalList
                  goals={this.state.goals}
                  checkFunction={this.setGoalAsDone}
@@ -282,12 +271,13 @@ class App extends Component {
                  editGoalModalFunction={this.openEditModal}
                  openDeleteModalFunction={this.openDeleteModal}/>
                  <FloatingActionButton
+                   className ="fab"
                    onClick={this.openModal}
                    style={{ marginRight: '20' }}>
                   <ContentAdd />
                  </FloatingActionButton>
               </div>
-                <div className="GoalDoughnutChart col-xs-6" style={{ height: '80vh' }}>
+                <div className="GoalDoughnutChart col-xs-12 col-md-5 col-lg-6" style={{ height: '80vh' }}>
                  <h2>Time Spent on Goals</h2>
                  <GoalDoughnutChart goals={this.state.goals} />
               </div>

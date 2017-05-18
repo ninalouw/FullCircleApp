@@ -9,25 +9,25 @@ const GoalItem = (props) => {
   return (
       <li>
         <div className="row">
-          <div className="col-xs-4">
-         <h3>{props.goal.name}</h3>
-         <IconButton tooltip="Edit"
-           onClick={props.editGoalModalFunction}
-           data-index={props.goal.id}>
-          <ActionEdit />
-         </IconButton>
-         <IconButton tooltip="Done"
-           onClick={props.checkFunction}
-           data-index={props.goal.id}>
-          <ActionCheckCircle />
-         </IconButton>
-         <IconButton tooltip="Delete"
-           onClick={props.openDeleteModalFunction}
-           data-index={props.goal.id}>
-          <ActionDelete />
-         </IconButton>
+          <div className="col-xs-12 col-sm-4 col-md-12">
+             <h3>{props.goal.name}</h3>
+             <IconButton className="icon-btn" tooltip="Edit"
+               onClick={props.editGoalModalFunction}
+               data-index={props.goal.id}>
+              <ActionEdit />
+             </IconButton>
+             <IconButton className="icon-btn" tooltip="Done"
+               onClick={props.checkFunction}
+               data-index={props.goal.id}>
+              <ActionCheckCircle />
+             </IconButton>
+             <IconButton className="icon-btn" tooltip="Delete"
+               onClick={props.openDeleteModalFunction}
+               data-index={props.goal.id}>
+              <ActionDelete />
+             </IconButton>
          </div>
-         <div className="col-xs-8" style={{ maxWidth: '260px' }}>
+         <div className="col-xs-12 col-sm-8 col-md-12" style={{ maxWidth: '260px' }}>
            <GoalBarChart count={props.goal.count_consecutive_days_completed}
                     name={props.goal.name}
                   maxDayCount={props.maxDayCount} />

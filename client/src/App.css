@@ -75,3 +75,19 @@ h2 {
 .GoalDoughnutChart {
   margin-top: 5rem;
 }
+
+@media (max-width: 500px) {
+.icon-btn {
+  font-size:2px !important;
+  padding:2px !important;
+}
+}
+
+.fab {
+    margin: 0px;
+    bottom: auto;
+    left: 260px;
+    top: 80px;
+    right: auto;
+    position: fixed;
+};

@@ -52,6 +52,13 @@ h2 {
   margin-top: 5rem;
 }
 
+/*@media (max-width: 32em) {
+.icon-btn {
+  font-size:8px;
+  padding:4px;
+}
+}*/
+
 
 /*.GoalBarChart {
   transform: rotate(90deg);
