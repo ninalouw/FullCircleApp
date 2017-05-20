@@ -1,7 +1,7 @@
 class Api::V1::GoalsController < Api::BaseController
   def create
     new_goal_params = params.require(:goal).permit(:name, :minutes)
-    goal = Goal.new new_goal_params
+    @goal = Goal.new new_goal_params
     goal.user = @api_user
     # goal.user = current_user
     if goal.save
@@ -13,7 +13,7 @@ class Api::V1::GoalsController < Api::BaseController
 
   def show
     goal = Goal.find params[:id]
-    render json: goal
+    render json: @goal
   end
 
   def index
