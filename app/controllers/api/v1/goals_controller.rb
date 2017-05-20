@@ -2,7 +2,8 @@ class Api::V1::GoalsController < Api::BaseController
   def create
     new_goal_params = params.require(:goal).permit(:name, :minutes)
     goal = Goal.new new_goal_params
-    goal.user = @api_user
+    # goal.user = @api_user
+    goal.user = current_user
     if goal.save
       render json: { id: goal.id, status: :success }
     else
@@ -13,6 +14,11 @@ class Api::V1::GoalsController < Api::BaseController
   def show
     goal = Goal.find params[:id]
     render json: goal
+  end
+
+  def index
+    @goals = Goal.order(created_at: :desc)
+    render json: @goals
   end
 
   def goals_list
@@ -33,7 +39,8 @@ class Api::V1::GoalsController < Api::BaseController
     end
 
     if @goal&.latest_date_completed&.to_date != today
-      @goal.update(latest_date_completed: today, count_consecutive_days_completed: current_days)
+      @goal.update(
+      latest_date_completed: today,                                            count_consecutive_days_completed: current_days)
     else
       render json: @goal
     end
@@ -62,4 +69,5 @@ class Api::V1::GoalsController < Api::BaseController
                                   :count_consecutive_days_completed,
                                   :latest_date_completed])
   end
+
 end

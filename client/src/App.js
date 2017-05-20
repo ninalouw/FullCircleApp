@@ -172,7 +172,7 @@ class App extends Component {
     $.ajax({
       url:`/api/v1/goals/${goalIndex}`,
       headers: {
-          'Authorization': apiKeys.GoalsApp,
+          // 'Authorization': apiKeys.GoalsApp,
           Accept : 'application/html'
       },
       method: 'POST',
@@ -191,7 +191,7 @@ class App extends Component {
     $.ajax({
       url: `/api/v1/goals/${deletedGoalId}`,
       headers: {
-        'Authorization': apiKeys.GoalsApp,
+        // 'Authorization': apiKeys.GoalsApp,
         Accept : 'application/json'
       },
       method: 'DELETE',
@@ -208,7 +208,7 @@ class App extends Component {
     $.ajax({
       url: `/api/v1/goals/${editedGoalId}`,
       headers: {
-        'Authorization': apiKeys.GoalsApp,
+        // 'Authorization': apiKeys.GoalsApp,
         Accept : 'application/json'
        },
       data: { goal: this.state.goalBeingEdited },
@@ -227,7 +227,7 @@ class App extends Component {
     $.ajax({
       url: `/api/v1/goals`,
       headers: {
-        'Authorization': apiKeys.GoalsApp,
+        // 'Authorization': apiKeys.GoalsApp,
         Accept : 'application/json'
       },
       success: function (goals) {
@@ -241,7 +241,7 @@ class App extends Component {
     $.ajax({
       url: `/api/v1/goals`,
       headers: {
-        'Authorization': apiKeys.GoalsApp,
+        // 'Authorization': apiKeys.GoalsApp,
         Accept : 'application/json'
        },
       data: { goal: newGoal },

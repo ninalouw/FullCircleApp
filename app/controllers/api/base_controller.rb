@@ -1,5 +1,5 @@
 class Api::BaseController < ApplicationController
-  before_action :authenticate
+  # before_action :authenticate
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
@@ -10,9 +10,9 @@ class Api::BaseController < ApplicationController
 
   private
 
-  def authenticate
-    api_key = params[:api_key] || request.headers['Authorization']
-    @api_user = User.find_by api_key: api_key
-    head :unauthorized unless @api_user
-  end
-end
+#   def authenticate
+#     api_key = params[:api_key] || request.headers['Authorization']
+#     @api_user = User.find_by api_key: api_key
+#     head :unauthorized unless @api_user
+#   end
+# end
