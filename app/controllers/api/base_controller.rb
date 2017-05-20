@@ -10,9 +10,9 @@ class Api::BaseController < ApplicationController
 
   private
 
-#   def authenticate
-#     api_key = params[:api_key] || request.headers['Authorization']
-#     @api_user = User.find_by api_key: api_key
-#     head :unauthorized unless @api_user
-#   end
-# end
+  def authenticate
+    api_key = params[:api_key] || request.headers['Authorization']
+    @api_user = User.find_by api_key: api_key
+    head :unauthorized unless @api_user
+  end
+end
