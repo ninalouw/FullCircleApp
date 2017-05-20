@@ -34,5 +34,5 @@ Rails.application.routes.draw do
   delete '/api/v1/goals/:id/' => 'api/v1/goals#delete_goal'
   patch '/api/v1/goals/:id/' => 'api/v1/goals#update_edited_goal'
   # for jwt token implementation
-  post '/login', to: "sessions#create"
+  # post '/login', to: "sessions#create"
 end
