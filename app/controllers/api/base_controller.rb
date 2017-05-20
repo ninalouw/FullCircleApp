@@ -1,5 +1,5 @@
 class Api::BaseController < ApplicationController
-  before_action :authenticate
+  # before_action :authenticate
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
