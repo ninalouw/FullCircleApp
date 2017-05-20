@@ -16,7 +16,7 @@
 
 
 5.times do
-  g = Goal.create(id: rand(20) +1, name: Faker::Book.title, minutes:rand(20) + 1, count_consecutive_days_completed: rand(10) + 1,
+  g = Goal.create(id: rand(100) +1, name: Faker::Book.title, minutes:rand(20) + 1, count_consecutive_days_completed: rand(10) + 1,
   latest_date_completed: DateTime.now.to_date,
   user_id: User.first.id )
 end
