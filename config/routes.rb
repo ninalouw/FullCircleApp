@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # get '/api/v1/goals/' => 'api/v1/goals#goals_list'
-  get '/api/v1/goals/' => 'api/v1/goals#index'
+  get '/api/v1/goals/' => 'api/v1/goals#goals_list'
+  # get '/api/v1/goals/' => 'api/v1/goals#index'
   post '/api/v1/goals/' => 'api/v1/goals#create'
   post '/api/v1/goals/:id/' => 'api/v1/goals#update_done'
   delete '/api/v1/goals/:id/' => 'api/v1/goals#delete_goal'
