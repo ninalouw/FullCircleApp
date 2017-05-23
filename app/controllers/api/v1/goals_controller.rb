@@ -2,7 +2,7 @@ class Api::V1::GoalsController < Api::BaseController
   def create
     new_goal_params = params.require(:goal).permit(:name, :minutes)
     goal = Goal.new new_goal_params
-    # goal.user = @api_user
+    goal.user = User.first
     if goal.save
       render json: { id: goal.id, status: :success }
     else
